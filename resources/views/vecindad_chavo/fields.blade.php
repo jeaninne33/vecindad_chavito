@@ -24,6 +24,8 @@
     <label for="exampleInputPassword1">Imagen:</label>
     @if(isset($image))
         <img class="img-responsive" alt="" src="/images/{{ $image->image }}" />
+        <br>
+        <label for="exampleInputPassword1">Si desea cambiar la imagen seleccione un archivo:</label>
     @endif
     <input type="file" name="image" id="image" class="form-control">
 </div>
@@ -42,6 +44,7 @@
                 var route = $(this).attr('action');
                 var form = $(this)[0];
                 var data = new FormData(form);
+                console.log(route);
                 $.ajax({
                     url:route,
                     type:'post',
@@ -53,8 +56,12 @@
                     headers: {'X-CSRF-TOKEN': token},
                     success:function(data){
                         $('#messages').removeClass("alert alert-danger");
+                        $('#messages').addClass("alert alert-success");
                         $('#messages').html(data.msj);
-                        window.location.href = "{{route('image-gallery.index')}}"; //se devuelde a la vista
+                        setTimeout(function() {
+                           window.location.href = "{{route('image-gallery.index')}}"; //se devuelde a la vista
+                        }, 600);
+                      
                     },
                     error:function(data){
                         $('#messages').removeClass("alert alert-success");

@@ -6,10 +6,24 @@ use Illuminate\Http\Request;
 use App\ImageGalleryVecindad;
 class ImageGalleryVecindadController extends Controller
 {
-    public function index()
+    public function index( Request $request)
     {
-        $images = ImageGalleryVecindad::get();
-        return view('vecindad_chavo.index', compact('images'));
+        $search = ''; //se inicializa la cadena de busqueda
+        if (isset($request['data']) && !empty($request['data'])) { //si existe una cadena de busqueda
+            $search = preg_replace("/[\r\n|\n|\r]+/", " ", $request['data']); //se eliminan los saltos de linea de la cadena de busqueda
+            $images = ImageGalleryVecindad::where(function ($query) use ($search) { //se hace la busqueda por cualqueira de estos campos de la vista
+                $query->where('titulo', 'like', "%{$search}%")
+                    ->orWhere('apodo', 'like', "%{$search}%")
+                    ->orWhere('nombre', 'like', "%{$search}%")->paginate(1);
+            });
+        }else{
+            $images = ImageGalleryVecindad:: paginate(1);
+        }
+        if ($request->ajax()) {
+            return view( 'vecindad_chavo.index')->with([ 'images'=> $images,'search' => $search])->render();
+        }  
+       
+        return view('vecindad_chavo.index')->with(['images' => $images, 'search' => $search]);
     }
     public function create()
     {
@@ -22,7 +36,6 @@ class ImageGalleryVecindadController extends Controller
     }
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'titulo'=> 'required',
             'nombre' => 'required',
@@ -35,8 +48,30 @@ class ImageGalleryVecindadController extends Controller
         $input['image'] = time() . '.' . $request->image->getClientOriginalExtension();
         $request->image->move(public_path('images'), $input['image']);
         ImageGalleryVecindad::create($input);
-        return back()
-            ->with('success', 'Image Uploaded successfully.');
+        return response()->json(['msj' => 'El actor se ha almacenado exitosamente'], 200);
+    }
+    public function update( $id, Request $request)
+    {
+        $reglas=[
+            'titulo' => 'required',
+            'nombre' => 'required',
+            'apodo' => 'required',
+            'apartamento' => 'nullable|max:50',
+            'descripcion' => 'nullable|max:800',
+        ];
+        if(isset($request->image)){
+            $reglas['image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+        }
+        $this->validate($request,$reglas);
+        $input = $request->all();
+        if (isset($request->image)) {
+            $input['image'] = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $input['image']);
+        }
+        $image= ImageGalleryVecindad::find($id);
+        $image->fill($input);
+        $image->save($input);
+        return response()->json(['msj' => 'El actor se ha editado exitosamente'], 200);
     }
    
     public function destroy($id)

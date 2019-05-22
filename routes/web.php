@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () { //['as' => 'index']
     return view('welcome');
 });
 Route::resource( 'image-gallery', 'ImageGalleryVecindadController');

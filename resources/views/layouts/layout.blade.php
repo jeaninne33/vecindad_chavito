@@ -71,7 +71,7 @@
                             <div class="breadcrumbs-area clearfix">
                                 <h4 class="page-title pull-left">Bienvenido a la vecindad del Chavo</h4>
                                 <ul class="breadcrumbs pull-left">
-                                    <li><a href="index.html">Inico</a></li>
+                                {{-- <li><a href="{{route('index')}}">Inicio</a></li> --}}
                                 </ul>
                             </div>
                         </div>

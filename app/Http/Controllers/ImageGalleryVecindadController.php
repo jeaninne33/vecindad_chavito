@@ -13,6 +13,7 @@ class ImageGalleryVecindadController extends Controller
     }
     public function upload(Request $request)
     {
+
         $this->validate($request, [
             'titulo'=> 'required',
             'nombre' => 'required',

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Image Gallery Example</title>
+    <title>La Vecindad del Chavo</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- References: https://github.com/fancyapps/fancyBox -->
@@ -39,63 +39,50 @@
     <div class="container">
 
 
-        <h3>Laravel - Galleria de la vecindad del Chavo</h3>
+        <h3>Laravel - Galeria de la vecindad del Chavo</h3>
         <form action="{{ url('image-gallery') }}" id='chavo' class="form-image-upload" method="POST" enctype="multipart/form-data">
 
-
             {!! csrf_field() !!}
-
-
-            @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
 
 
             @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
-
             </div>
-            <div id="messages"></div>
+            
             @endif
+            <div id="messages"></div>
 
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 titulo" >
                     <strong>Titulo:</strong>
                     <input type="text" name="titulo" id='titulo' class="form-control" placeholder="Titulo">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 nombre" >
                     <strong>Nombre:</strong>
                     <input type="text" name="nombre"  id='nombre'  class="form-control" placeholder="Nombre">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 apodo">
                     <strong>Apodos:</strong>
                     <input type="text" name="apodo" id='apodo' class="form-control" placeholder="Apodo">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 apartamento">
                     <strong>Departamento:</strong>
-                    <input type="text" name="departamento" id='departamento' class="form-control" placeholder="Departamento">
+                    <input type="text" name="apartamento" id='apartamento' class="form-control" placeholder="Departamento">
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 descripcion">
                     <strong>Descripción:</strong>
                     <input type="text" name="descripcion" id='descripcion' class="form-control" placeholder="Descripcion">
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 image">
                     <strong>Imagen:</strong>
-                    <input type="file" name="image" class="form-control">
+                    <input type="file" name="image" id="image" class="form-control">
                 </div>
                 <div class="col-md-12">
                     <br />
-                    <button type="submit" class="btn btn-success">subir</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </div>
 
@@ -144,14 +131,18 @@
             var token = $(form).find('input[name="_token"]').val();
            
             var form = '#' + $(this).attr('id');
-            var data = $(form).serialize();
+          ///  var data = $(form).serialize();
             var route = $(this).attr('action');
-            console.log(form,data,route);
-            debugger;
+            var form = $(this)[0];
+            var data = new FormData(form);
             $.ajax({
                 url:route,
                 type:'post',
                 data: data,
+                enctype: 'multipart/form-data',
+                processData: false,  // Important!
+                contentType: false,
+                cache: false,
                 headers: {'X-CSRF-TOKEN': token},
                 success:function(data){
                     $('#messages').removeClass("alert alert-danger");

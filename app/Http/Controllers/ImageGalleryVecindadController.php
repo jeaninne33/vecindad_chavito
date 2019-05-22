@@ -22,6 +22,7 @@ class ImageGalleryVecindadController extends Controller
     }
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'titulo'=> 'required',
             'nombre' => 'required',

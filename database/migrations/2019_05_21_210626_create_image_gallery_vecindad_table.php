@@ -18,8 +18,8 @@ class CreateImageGalleryVecindadTable extends Migration
             $table->string('titulo');
             $table->string('nombre');
             $table->string('apodo');
-            $table->string('apartamento');
-            $table->string('descripcion');
+            $table->string('apartamento')->nullable();
+            $table->string('descripcion')->nullable();
             $table->string('image');
             $table->timestamps();
         });

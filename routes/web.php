@@ -14,8 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('image-gallery', 'ImageGalleryVecindadController@index')->name( 'image.gallery');
-Route::post('image-gallery', 'ImageGalleryVecindadController@upload');
-Route::put( 'image-gallery/{id}', 'ImageGalleryVecindadController@edit');
-Route::delete('image-gallery/{id}', 'ImageGalleryVecindadController@destroy');
+Route::resource( 'image-gallery', 'ImageGalleryVecindadController');
+// Route::get('image-gallery', 'ImageGalleryVecindadController@index')->name( 'image.gallery');
+// Route::post('image-gallery', 'ImageGalleryVecindadController@upload');
+// Route::put( 'image-gallery/{id}', 'ImageGalleryVecindadController@edit');
+// Route::delete('image-gallery/{id}', 'ImageGalleryVecindadController@destroy');

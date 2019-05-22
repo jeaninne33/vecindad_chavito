@@ -65,7 +65,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            {{-- @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -77,7 +77,7 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif --}}
 
             <div class="content">
                 <div class="title m-b-md">
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                <a href="{{route('image.gallery')}}">Ver Galeria Vecindad del Chavo</a>
+                <a href="{{route('image-gallery.index')}}">Ver Galeria Vecindad del Chavo</a>
                 </div>
             </div>
         </div>

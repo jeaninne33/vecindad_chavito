@@ -30,7 +30,7 @@
                                     <ul class="collapse">
                                         <li class="active"><a href="{{route('image-gallery.index')}}">Ver Galeria</a></li>
                                         <li><a href="{{route('image-gallery.create')}}">Agregar Personaje</a></li>
-                                        {{-- <li><a href="index3.html">SEO dashboard</a></li> --}}
+                                        <li><a href="{{url('/')}}">Inicio</a></li>
                                     </ul>
                                 </li>
         
@@ -69,7 +69,7 @@
                     <div class="row align-items-center">
                         <div class="col-sm-6">
                             <div class="breadcrumbs-area clearfix">
-                                <h4 class="page-title pull-left">Bienvenido a la vecindad del Chavo</h4>
+                                <h4 class="page-title pull-left">BIENVENIDO A LA APLICACIÓN WEB LA VECINDAD DEL CHAVO</h4>
                                 <ul class="breadcrumbs pull-left">
                                 {{-- <li><a href="{{route('index')}}">Inicio</a></li> --}}
                                 </ul>

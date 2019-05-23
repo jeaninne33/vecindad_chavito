@@ -1,15 +1,45 @@
 <div class="row" id="load_image">
+        <br>
+        <hr>
     <div class="container">
-        <div class="input-group">
-            <input type="text" class="form-control"
-                placeholder="" id="texto_buscar"
-                value="{{$search}}">
-            <span class="input-group-btn">
-                <button class="btn btn-search" id="search" type="button"><i class="fa fa-search fa-fw"></i>
-                   Busqueda por Title, Apodo, Nombre</button>
-            </span>
+            <div class="row">
+                    <div class="col-lg-8 col-ml-12">
+                        <div class="row">
+                            <!-- basic form start -->
+                            <div class="col-12 mt-5">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" title="Buscar"
+                                    placeholder="Busqueda por Titulo, Nombre, Apodo" id="texto_buscar"  value="{{$search}}">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-search" id="search" type="button"><i class="fa fa-search fa-fw"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="col-lg-12 col-ml-12">
+                        <br>
+                            <div class="row">
+                                <!-- basic form start -->
+                                <div class="col-3">
+                                <div class="input-group "> 
+                                       <span class="input-group-btn">
+                                        <button class="btn btn-default" id="nombre" type="button" title="Ordenar por Nombre"><i class="fas fa-sort-alpha-down"></i>
+                                        Nombre</button>
+                                        <button class="btn btn-default" id="apodo" type="button" title="Ordenar por Apodo"><i class="fas fa-sort-alpha-down"></i>
+                                            Apodo</button>
+                                    </span>
+                                </div>
+                                <div class="input-group ">
+                                       
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
         </div>
-    </div>
     <br>
      <div class='list-group gallery'>
                 @if($images->count())
@@ -23,7 +53,7 @@
                             <small class='text-muted'>{{ $image->apodo }}</small>
                         </div> <!-- text-center / end -->
                     </a>
-                    <a href="{{ route('image-gallery.edit',$image->id) }}" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar"> </a>
+                    <a href="{{ route('image-gallery.edit',$image->id) }}" class="edit-icon btn btn-primary glyphicon glyphicon-pencil" title="Editar"> </a>
                     <br/>
                     <form action="{{ url('image-gallery',$image->id) }}" method="POST">
                         <input type="hidden" name="_method" value="delete">

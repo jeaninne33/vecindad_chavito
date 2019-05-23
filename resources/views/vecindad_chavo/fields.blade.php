@@ -44,7 +44,6 @@
                 var route = $(this).attr('action');
                 var form = $(this)[0];
                 var data = new FormData(form);
-                console.log(route);
                 $.ajax({
                     url:route,
                     type:'post',
@@ -60,7 +59,7 @@
                         $('#messages').html(data.msj);
                         setTimeout(function() {
                            window.location.href = "{{route('image-gallery.index')}}"; //se devuelde a la vista
-                        }, 600);
+                        }, 1000);
                       
                     },
                     error:function(data){

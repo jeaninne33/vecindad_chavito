@@ -10,17 +10,24 @@ class ImageGalleryVecindadController extends Controller
     {
         $search = ''; //se inicializa la cadena de busqueda
         if (isset($request['data']) && !empty($request['data'])) { //si existe una cadena de busqueda
+           
             $search = preg_replace("/[\r\n|\n|\r]+/", " ", $request['data']); //se eliminan los saltos de linea de la cadena de busqueda
             $images = ImageGalleryVecindad::where(function ($query) use ($search) { //se hace la busqueda por cualqueira de estos campos de la vista
                 $query->where('titulo', 'like', "%{$search}%")
                     ->orWhere('apodo', 'like', "%{$search}%")
-                    ->orWhere('nombre', 'like', "%{$search}%")->paginate(1);
-            });
+                    ->orWhere('nombre', 'like', "%{$search}%");
+            })->paginate(3);
         }else{
-            $images = ImageGalleryVecindad:: paginate(1);
+            if(isset($request['NomOrder']) && !empty($request['NomOrder'])){
+                $images = ImageGalleryVecindad::OrderBy('nombre', 'ASC')->paginate(3);
+            }elseif(isset($request['ApoOrder']) && !empty($request['ApoOrder'])){
+                $images = ImageGalleryVecindad::OrderBy('apodo', 'ASC')->paginate(3);
+            }else{
+                $images = ImageGalleryVecindad:: paginate(3);
+            }
         }
         if ($request->ajax()) {
-            return view( 'vecindad_chavo.index')->with([ 'images'=> $images,'search' => $search])->render();
+            return view( 'vecindad_chavo.image')->with([ 'images'=> $images,'search' => $search])->render();
         }  
        
         return view('vecindad_chavo.index')->with(['images' => $images, 'search' => $search]);

@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>srtdash - ICO Dashboard</title>
+<title>Vecindad del Chavo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="{{URL::asset('css/metisMenu.css')}}">
 <link rel="stylesheet" href="{{URL::asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{URL::asset('css/slicknav.min.css')}}">
+
 <!-- amchart css -->
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <!-- others css -->
@@ -21,7 +22,6 @@
 <link rel="stylesheet" href="{{URL::asset('css/default-css.css')}}">
 <link rel="stylesheet" href="{{URL::asset('css/styles.css')}}">
 <link rel="stylesheet" href="{{URL::asset('css/responsive.css')}}">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- modernizr css -->
 <script src="{{URL::asset('/js/modernizr-2.8.3.min.js')}}"></script>
